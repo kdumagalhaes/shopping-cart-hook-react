@@ -33,7 +33,6 @@ const Home = (): JSX.Element => {
     async function loadProducts() {
       const response = await api.get('http://localhost:3333/products')
       setProducts(response.data)
-      console.log(response.data)
     }
 
     loadProducts();
@@ -46,28 +45,29 @@ const Home = (): JSX.Element => {
   return (
     <ProductList>
       {products.map(product => {
+        const priceFormated = formatPrice(product.price)
         return (
           <li key={product.id}>
-          <img src={product.image} alt={product.title} />
-          <strong>{product.title}</strong>
-          <span>{product.priceFormatted}</span>
-          <button
-            type="button"
-            data-testid="add-product-button"
-          // onClick={() => handleAddProduct(product.id)}
-          >
-            <div data-testid="cart-product-quantity">
-              <MdAddShoppingCart size={16} color="#FFF" />
-              {/* {cartItemsAmount[product.id] || 0} */} 2
-            </div>
-    
-            <span>ADICIONAR AO CARRINHO</span>
-          </button>
-        </li>
+            <img src={product.image} alt={product.title} />
+            <strong>{product.title}</strong>
+            <span>{priceFormated}</span>
+            <button
+              type="button"
+              data-testid="add-product-button"
+            // onClick={() => handleAddProduct(product.id)}
+            >
+              <div data-testid="cart-product-quantity">
+                <MdAddShoppingCart size={16} color="#FFF" />
+                {/* {cartItemsAmount[product.id] || 0} */} 2
+              </div>
+
+              <span>ADICIONAR AO CARRINHO</span>
+            </button>
+          </li>
         )
       })
       }
-  </ProductList>
+    </ProductList>
   );
 };
 
