@@ -45,7 +45,7 @@ $ cd signup-form-reactjs
 $ yarn
 
 # Run the server
-$ yarn
+$ yarn server
 
 # Run the app
 $ yarn start
